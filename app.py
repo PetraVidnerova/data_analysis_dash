@@ -7,8 +7,6 @@ import plotly.graph_objs as go
 from plotly import tools
 
 
-
-
 def hist_age():
     girls = go.Histogram(
         x = students[students['sex'] == 'F'].age,
@@ -21,6 +19,7 @@ def hist_age():
         'data': [girls, boys],
         'layout': {
             'title': 'Histogram rozdělení věku - chlapci, dívky',
+            'xaxis': { 'title': 'věk'}
         }
     }
 
@@ -48,7 +47,7 @@ def alcohol_bar():
 
     layout = go.Layout(
         title = 'Průměrná konzumace alkoholu',
-        yaxis = dict(range=[1,2.5]),
+        yaxis = dict(range=[1,2.5], title='1 (nízká spotřeba) - 5 (vysoká spotřeba)'),
         xaxis = dict(title='věk'))
 
     fig = dict(data=[girls, boys, both], layout=layout)
@@ -67,6 +66,7 @@ def alcohol_box():
     
     layout = go.Layout(
         title="Konzumace alkoholu dle věku",
+        yaxis = dict(title='1 (nízká spotřeba) - 5 (vysoká spotřeba)'),
         xaxis = dict(title='věk(#vzorků)'))
 
     fig = dict(data=data, layout=layout)
@@ -85,8 +85,8 @@ def alcohol_family():
 
     layout = go.Layout(
         title = 'Rodinné zázemí a alkohol',
-        xaxis = dict(title='rodinné zázemí'),
-        yaxis = dict(title='konzumace alkoholu'))
+        xaxis = dict(title='rodinné zázemí 1 (špatné) - 5 (vynikající)'),
+        yaxis = dict(title='konzumace alkoholu 1-5'))
 
     fig = dict(data=[data], layout=layout)
     return fig
@@ -203,7 +203,10 @@ def mother_box():
         name = 'Pracující',
         boxpoints = 'all')
 
-    layout = go.Layout(title="Pracující matky a rodinné zázemí")
+    layout = go.Layout(
+        title="Pracující matky a rodinné zázemí",
+        yaxis=dict(title="rodinné zázemí 1 (špatné) - 5 (vynikající)")
+    )
 
     fig = dict(data=[trace1, trace2], layout=layout)
 
@@ -223,7 +226,9 @@ def mother_hist():
 
     layout = go.Layout(
         title = "Pracující matky a rodinné zázemí",
-        barmode = 'overlay')
+        barmode = 'overlay',
+        xaxis = dict(title='rodinné zázemí 1 (špatné) - 5 (vynikající)')
+    )
     fig = dict(data=[trace2, trace1], layout=layout)
 
     return fig
@@ -275,7 +280,6 @@ app.layout = html.Div(children=[
     Output(component_id='main_graph', component_property='figure'),
     [Input(component_id='dropdown', component_property='value')]
 )
-
 def update_figure(plot_type):
     return graphs[plot_type]()
 
