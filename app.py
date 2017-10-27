@@ -166,6 +166,10 @@ def internet_lifestyle():
     fig.append_trace(famrel[1], 1, 4)
 
     fig['layout'].update( title='Přístup k internetu a životní styl', showlegend=False)
+    fig['layout']['yaxis1'].update(title='1 (málo) - 5 (hodně)')
+    fig['layout']['yaxis2'].update(title='1 (málo) - 5 (hodně)')
+    fig['layout']['yaxis3'].update(title='%')
+    fig['layout']['yaxis4'].update(title='1 (špatné) - 5 (vynikající)')
     return fig
     
 
