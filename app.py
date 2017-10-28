@@ -10,14 +10,19 @@ from graphs import graphs, texts
 
 app = dash.Dash()
 
+intro = ''' 
+Data z [www.kaggle.com](http://www.kaggle.com): 
+[Student alcohol consumption](https://www.kaggle.com/uciml/student-alcohol-consumption).
+
+Zdrojáky na [githubu](https://github.com/PetraVidnerova/data_analysis_dash). Příprava dat: [jupyter notebook](https://github.com/PetraVidnerova/data_analysis/blob/master/alcohol%20consumption%20prepare%20data.ipynb). 
+'''
+
 app.layout = html.Div(children=[
 
     html.H1(children='Studenti středních škol - životní styl'),
 
-    # TODO??? I don't know why multiline string does not work 
-    dcc.Markdown(children='Data z [www.kaggle.com](http://www.kaggle.com): [Student alcohol consumption](https://www.kaggle.com/uciml/student-alcohol-consumption).'),
+    dcc.Markdown(children=intro),
 
-    
     dcc.Dropdown(
         options=[
             {'label': 'Histogram rozdělení věku - chlapci, dívky', 'value': 'hist_age'},
