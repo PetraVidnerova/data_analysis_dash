@@ -32,7 +32,8 @@ app.layout = html.Div(children=[
             {'label': 'Internet doma a životní styl', 'value': 'internet_lifestyle'},
             {'label': 'Vztahy a věk', 'value': 'relationship_age'},
             {'label': 'Matka v domácnosti a rodinné zázemí (boxplot)', 'value': 'mother_box'},
-            {'label': 'Matka v domácnosti a rodinné zázemí (histogram)', 'value': 'mother_hist'}
+            {'label': 'Matka v domácnosti a rodinné zázemí (histogram)', 'value': 'mother_hist'},
+            {'label': 'Matka v domácnosti a rodinné zázemí (barplot)', 'value': 'mother_bar'},
         ],
         value='hist_age',
         id='dropdown'

@@ -474,6 +474,62 @@ mother_hist_txt = '''
 ```
 '''
 
+def mother_bar():
+    mother = students[['Mjob', 'famrel']]
+    at_home_perc = 100*mother[mother.Mjob == 'at_home'].groupby('famrel').Mjob.count()/len(mother[mother.Mjob == 'at_home'])
+    working_perc = 100*mother[mother.Mjob != 'at_home'].groupby('famrel').Mjob.count()/len(mother[mother.Mjob != 'at_home'])
+
+    trace1 = go.Bar(
+        x = at_home_perc.index,
+        y = at_home_perc,
+        name = "V domácnosti"
+    )
+
+    trace2 = go.Bar(
+        x = working_perc.index,
+        y = working_perc,
+        name = "Pracující"
+    )
+
+    layout = go.Layout(
+        title = "Pracující matky a rodinné zázemí",
+        xaxis = dict(title="rodinné zázemí 1 (špatné) - 5 (vynikající)"),
+        yaxis = dict(title="%")
+    )
+
+    fig = dict(data=[trace1, trace2], layout=layout)
+    
+    return fig
+
+mother_bar_txt = '''
+```
+    mother = students[['Mjob', 'famrel']]
+    at_home_perc = 100*mother[mother.Mjob == 'at_home'].groupby('famrel').Mjob.count()/len(mother[mother.Mjob == 'at_home'])
+    working_perc = 100*mother[mother.Mjob != 'at_home'].groupby('famrel').Mjob.count()/len(mother[mother.Mjob != 'at_home'])
+
+    trace1 = go.Bar(
+        x = at_home_perc.index,
+        y = at_home_perc,
+        name = "V domácnosti"
+    )
+
+    trace2 = go.Bar(
+        x = working_perc.index,
+        y = working_perc,
+        name = "Pracující"
+    )
+
+    layout = go.Layout(
+        title = "Pracující matky a rodinné zázemí",
+        xaxis = dict(title="rodinné zázemí 1 (špatné) - 5 (vynikající)"),
+        yaxis = dict(title="%")
+    )
+
+    fig = dict(data=[trace1, trace2], layout=layout)
+```
+'''
+
+
 
 graphs = {
     'hist_age': hist_age,
@@ -483,7 +539,8 @@ graphs = {
     'internet_lifestyle': internet_lifestyle,
     'relationship_age': relationship_age,
     'mother_box': mother_box,
-    'mother_hist': mother_hist
+    'mother_hist': mother_hist,
+    'mother_bar': mother_bar
 }
 
 texts = {
@@ -494,5 +551,6 @@ texts = {
     'internet_lifestyle': internet_lifestyle_txt,
     'relationship_age': relationship_age_txt,
     'mother_box': mother_box_txt,
-    'mother_hist': mother_hist_txt
+    'mother_hist': mother_hist_txt,
+    'mother_bar': mother_bar_txt
 }
